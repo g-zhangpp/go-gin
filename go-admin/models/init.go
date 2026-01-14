@@ -8,7 +8,7 @@ import (
 var DB *gorm.DB
 
 func NewGormDB() {
-	dns := `root@Root123.@tcp(10.192.161.221:3306)/go-admin?charset=utf8mb4&parseTime=True&loc=Local`
+	dns := `root:root123@tcp(192.168.21.33:3306)/go_admin?charset=utf8mb4&parseTime=True&loc=Local`
 	db, err := gorm.Open(mysql.Open(dns), &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true,
 	})
