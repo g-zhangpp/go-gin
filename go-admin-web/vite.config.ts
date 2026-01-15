@@ -9,6 +9,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  envDir: './viteenv',  // 这里用相对路径，为了配置多环境
   plugins: [vue(),
     // 使用svg图标
   createSvgIconsPlugin({
@@ -18,4 +19,10 @@ export default defineConfig({
     symbolId: 'icon-[dir]-[name]',
   })
   ],
+  // 设置别名
+  resolve: {
+    alias: {
+      '@': path.resolve('./src'),
+    }
+  }
 })

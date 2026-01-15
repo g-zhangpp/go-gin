@@ -77,3 +77,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/*进度条样式*/
+#nprogress .bar {
+  background-color: #e99d53 !important;
+}
