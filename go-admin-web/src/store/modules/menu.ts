@@ -1,4 +1,4 @@
-import { defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 import {getMenuListApi} from "@/api/system/menu/menu.ts";
 
 export const useMenuStore = defineStore('menuState', {
@@ -9,7 +9,8 @@ export const useMenuStore = defineStore('menuState', {
     getters: {},
     actions: {
         // 生成路由
-        generateRouter: async function(){
+        async generateRouter(){
+            console.log('🔥 generateRouter 被调用了')
             const {data} = await getMenuListApi()
             this.routers = data.result
             return data.result

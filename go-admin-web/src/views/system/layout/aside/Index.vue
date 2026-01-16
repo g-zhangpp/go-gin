@@ -2,9 +2,11 @@
   <el-menu color="white" text-color="#67879b" router
            :default-active="route.path"
            :unique-opened="false" :default-openeds="[route.path]"
-           class="el-menu-vertical-demo">
+           class="el-menu-vertical-demo" background-color="#333"
+           :collapse="isCollapse"
+           :collapse-transition="true">
     <!--logo start-->
-    <div class="imagBox">
+    <div class="imagBox" v-if="!isCollapse">
       <img src="@/assets/logo.svg" alt="">
     </div>
     <!--logo end-->
@@ -12,17 +14,17 @@
     <!--遍历菜单开始-->
     <template v-for="(v,index) in menuData" :key="index">
       <!--如果菜单有子菜单，则循环子菜单-->
-      <el-sub-menu v-if="v.sub_menus.length>0" :index="index">
-        <template slot="title">
+      <el-sub-menu v-if="v.sub_menus.length>0" :index="String(index)">
+        <template #title>
           <el-icon>
             <component :is="v.web_icon"></component>
           </el-icon>
+          <span>{{ v.name }}</span>
         </template>
 
         <el-menu-item v-for="child in v.sub_menus" :key="child.path" :index="child.path">
           <el-icon>
             <component :is="child.web_icon"></component>
-            />
           </el-icon>
           {{ child.name }}
         </el-menu-item>
@@ -41,17 +43,22 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import {useRoute} from 'vue-router'
 import {useMenuStore} from "@/store/modules/menu.ts";
+import {useSettingStore} from "@/store/modules/setting.ts";
 
 const route = useRoute()
-
 const {routers} = useMenuStore()
 
 //获取菜单数据
 const menuData = ref()
 menuData.value = routers
+
+const settingStore = useSettingStore()
+
+// 判断是否折叠
+const isCollapse = computed(() => !settingStore.isCollapse)
 
 
 </script>
@@ -63,7 +70,7 @@ menuData.value = routers
 }
 
 .imagBox img {
-  max-width: 1%;
+  max-width: 80%;
 }
 
 .el-menu {

@@ -27,7 +27,7 @@
           "id": 3,
           "parent_id": 2,
           "name": "角色管理",
-          "web_icon": "Parent",
+          "web_icon": "Present",
           "sort": 0,
           "path": "/system/role",
           "level": 1,

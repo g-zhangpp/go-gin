@@ -1,5 +1,10 @@
 <template>
   <div class="main">
+    <div class="tool-left">
+      <CollapseIcon/>
+      <Hamburger/>
+    </div>
+
     <div class="linkBox">
       <!--登录用户信息 start-->
       <el-popover :width="300">
@@ -50,6 +55,8 @@
 
 <script setup lang="ts">
 import {SwitchButton} from '@element-plus/icons-vue'
+import CollapseIcon from "@/views/system/layout/header/CollapseIcon.vue";
+import Hamburger from "@/views/system/layout/header/Hamburger.vue";
 </script>
 
 <style scoped>
@@ -57,6 +64,8 @@ import {SwitchButton} from '@element-plus/icons-vue'
   height: 70px;
   box-shadow: rgb(0 0 0 /10%) 0px 0px 10px;
   background-color: white;
+  display: flex;
+  justify-content: space-between;
 }
 
 .linkBox {
@@ -95,4 +104,9 @@ import {SwitchButton} from '@element-plus/icons-vue'
   text-overflow: ellipsis;
 }
 
+.tool-left{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
 </style>
